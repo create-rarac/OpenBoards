@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FlashForum 2009</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBoards Forum</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; box-shadow: 0 2px 8px #ccc; padding: 24px; border-radius: 8px; }
+        h1, h2 { color: #333; }
+        .hidden { display: none; }
+        .post { border: 1px solid #eee; padding: 16px; margin-bottom: 16px; border-radius: 6px; }
+        .form-group { margin-bottom: 12px; }
+        input, textarea { width: 100%; padding: 8px; box-sizing: border-box; margin-top: 4px; }
+        button { padding: 8px 18px; border: none; background: #1976d2; color: #fff; border-radius: 4px; cursor: pointer; }
+        button:disabled { background: #ccc; }
+        .nav { margin-bottom: 24px; }
+        .nav button { margin-right: 12px; background: #eee; color: #222; }
+        .nav button.active { background: #1976d2; color: #fff; }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script src="main.js"></script>
+    <div class="container">
+        <h1>OpenBoards Forum</h1>
+        <div class="nav">
+            <button id="navFeed" onclick="showView('feed')">Feed</button>
+            <button id="navCreate" onclick="showView('create')" class="hidden">Create Post</button>
+            <button id="navProfile" onclick="showView('profile')" class="hidden">Profile</button>
+            <button id="navLogin" onclick="showView('login')">Login</button>
+            <button id="navSignup" onclick="showView('signup')">Signup</button>
+            <button id="navLogout" onclick="logout()" class="hidden">Logout</button>
+        </div>
+
+        <div id="feedView">
+            <h2>Post Feed</h2>
+            <div id="posts"></div>
+        </div>
+
+        <div id="createView" class="hidden">
+            <h2>Create Post</h2>
+            <div class="form-group">
+                <input type="text" id="postTitle" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <textarea id="postContent" placeholder="What's on your mind?" rows="4"></textarea>
+            </div>
+            <button onclick="createPost()">Post</button>
+        </div>
+
+        <div id="profileView" class="hidden">
+            <h2>Profile</h2>
+            <p><b>Username:</b> <span id="profileUsername"></span></p>
+            <p><b>Posts made:</b> <span id="profilePosts"></span></p>
+        </div>
+
+        <div id="loginView" class="hidden">
+            <h2>Login</h2>
+            <div class="form-group">
+                <input type="text" id="loginUsername" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" placeholder="Password">
+            </div>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="signupView" class="hidden">
+            <h2>Signup</h2>
+            <div class="form-group">
+                <input type="text" id="signupUsername" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" id="signupPassword" placeholder="Password">
+            </div>
+            <button onclick="signup()">Signup</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
